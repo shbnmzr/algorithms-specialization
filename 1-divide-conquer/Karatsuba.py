@@ -5,7 +5,8 @@ def count_digits(number):
 
 def karatsuba(x, y):
     n = count_digits(x)
-    if n == 1:
+    m = count_digits(y)
+    if n == 1 or m == 1:
         return x * y
     else:
         halves = {
@@ -20,12 +21,12 @@ def karatsuba(x, y):
             'bc': karatsuba(halves['b'], halves['c']),
             'bd': karatsuba(halves['b'], halves['d'])
         }
-        return ((pow(10, n)) * results['ac']) + ((pow(10, n//2)) * (results['ad'] + results['bc'])) + results['bd']
+        return ((pow(10, (n//2)*2)) * results['ac']) + ((pow(10, n//2)) * (results['ad'] + results['bc'])) + results['bd']
 
 
 def main():
-    x = 1234567812345678123456781234567812345678123456781234567812345678
-    y = 1234567812345678123456781234567812345678123456781234567812345678
+    x = 3141592653589793238462643383279502884197169399375105820974944592
+    y = 2718281828459045235360287471352662497757247093699959574966967627
     result = karatsuba(x, y)
     print(result)
     print(x * y)
