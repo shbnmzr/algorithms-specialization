@@ -17,22 +17,26 @@ def quick_sort(A: list):
 def partition(A: list, pivot: int) -> list:
     n = len(A)
     i = 1
-    A[A.index(pivot)], A[0] = A[0], pivot
+    A = swap(A, A.index(pivot), 0)
     for j in range(1, n):
         if j == A.index(pivot):
             continue
         if A[j] < pivot:
-            A[i], A[j] = A[j], A[i] 
+            A = swap(A, i, j)
             i += 1
             j += 1
 
     i -= 1
-    A[i], A[0] = pivot, A[i]
+    A = swap(A, i, 0)
     return A
 
 def choose_pivot_randomly(n: int):
     pivot_index = random.randint(0, n-1)
     return pivot_index
+
+def swap(A: list, first_index: int, second_index: int):
+    A[first_index], A[second_index] = A[second_index], A[first_index]
+    return A
 
 def main():
     with open('./QuickSortTest.txt', 'r') as file:
