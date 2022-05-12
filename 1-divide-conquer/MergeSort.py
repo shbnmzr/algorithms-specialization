@@ -1,3 +1,16 @@
+def merge_sort(A):
+    n = len(A)
+    if n <= 2:
+        if n == 2:
+            if A[0] > A[1]:
+                return [A[1], A[0]]
+        return A.copy()
+    else:
+        left = merge_sort(A[:n // 2])
+        right = merge_sort(A[n // 2:])
+        merged = merge_sorted_lists(left, right)
+        return merged
+
 def merge_sorted_lists(l1, l2):
     i = 0
     j = 0
@@ -9,20 +22,19 @@ def merge_sorted_lists(l1, l2):
         else:
             merged.append(l2[j])
             j += 1
-    if i + j == len(l1) + len(l2) - 2:
-        return merged
     if i < len(l1):
         merged.extend(l1[i:])
-        return merged
     if j < len(l2):
         merged.extend(l2[j:])
-        return merged
+    return merged
 
 
 def main():
-    print(merge_sorted_lists([1, 3, 5, 7], [1, 2, 4, 6]))
-    print(merge_sorted_lists([1, 3, 5, 7], [1, 2, 4, 6, 8]))
-    print(merge_sorted_lists([1, 3, 5, 7], [9, 11, 13, 14, 15, 16]))
+    with open('test.txt', 'r') as file:
+        lines = file.read().splitlines()
+        numbers = [int(x) for x in lines]
+    print(merge_sort(numbers))
+    
 
 
 if __name__ == '__main__':
