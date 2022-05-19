@@ -1,5 +1,6 @@
 import random
 
+
 def quick_sort(A: list):
     n = len(A)
     if n <= 1:
@@ -13,6 +14,7 @@ def quick_sort(A: list):
         
         A[pivot_index+1:] = quick_sort(partitioned[pivot_index+1: ])
         return A
+
 
 def partition(A: list, pivot: int) -> list:
     n = len(A)
@@ -30,13 +32,16 @@ def partition(A: list, pivot: int) -> list:
     A = swap(A, i, 0)
     return A
 
+
 def choose_pivot_randomly(n: int):
     pivot_index = random.randint(0, n-1)
     return pivot_index
 
+
 def swap(A: list, first_index: int, second_index: int):
     A[first_index], A[second_index] = A[second_index], A[first_index]
     return A
+
 
 def main():
     with open('./QuickSortTest.txt', 'r') as file:
@@ -45,6 +50,7 @@ def main():
 
     res = quick_sort(numbers)
     print(res)
+
 
 if __name__=='__main__':
     main()
